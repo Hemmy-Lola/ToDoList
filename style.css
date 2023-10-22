@@ -1,0 +1,115 @@
+*{
+    background-color: #041B15;
+    background-size: cover; 
+    font-family: 'PoliceContenu';
+}
+
+.left-align {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.right-align {
+    text-align: left;
+}
+
+.navbar {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e8d8d8;
+    height: 60px;
+}
+
+@font-face {
+    font-family: 'PoliceTitre';
+    src: url(HomemadeApple-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'PoliceContenu';
+    src: url(Quicksand-VariableFont_wght.ttf);
+}
+
+.container {
+    display: block;
+    padding: 5rem;
+}
+
+h1{
+font-size: 3rem;
+}
+
+h1, h3{
+    font-family: 'PoliceTitre';
+}
+
+button{
+    border-radius: 10px;
+    color:#e8d8d8;
+    margin-top: 5px;
+    padding: 7px;
+    background-color:transparent;
+    font-size: 15px;
+    border: 1px solid #e8d8d8;
+    cursor: pointer;
+    font-family: 'PoliceContenu';
+}
+
+ #title{
+    width: 500px;
+    height: 40px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border: 1px solid #e8d8d8;
+    border-radius: 14px;
+    color:#fff0f0;
+    outline: none;
+    background-color: transparent;
+    font-family: 'PoliceContenu';
+} 
+
+p{
+    color:#e8d8d8;
+    font-family: 'PoliceTitre';
+}
+ #description{
+    width: 500px;
+    height: 90px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border: 1px solid #e8d8d8;
+    border-radius: 14px;
+    outline: none;
+    color:#fff0f0;
+    background-color: transparent;
+    font-family: 'PoliceContenu';
+} 
+
+#btn{
+    width: 400px;
+    height: 35px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border: 1px solid #e8d8d8;
+    border-radius: 14px;
+    outline: none;
+    color:#041B15;
+    background-color: wheat;
+    font-family: 'PoliceTitre';
+} 
+
+li{
+    margin-top: 20px;
+    color:#e8d8d8;
+    border: 1px solid #e8d8d8;
+    padding: 20px;
+    list-style: none;
+    border-radius: 20px;
+}
+

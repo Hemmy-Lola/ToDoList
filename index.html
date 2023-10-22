@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma to Do List...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Ma to Do list ...</h1>
+    </div>
+    <div class="container">
+        <div class="left-align">
+        <input type="text" id="title" placeholder="titre"><br>
+        <input type="text" id="description" placeholder="description "><br>
+        <input type="button" id="btn" value="Ajouter"><br>
+        <button id="filter">Filtrer</button><br>
+        <button id="all">Toutes les tâches</button>
+        <button id="up">Fini</button>
+        <button id="down">A Faire</button>
+        </div>
+        
+        <ul id="list">
+            <p>Pas de nouvelles, bonnes nouvelles !</p>
+        </ul>
+    </div>
+</body>
+
+<script>
+let title = document.getElementById("title");
+let description = document.getElementById("description");
+let btn = document.getElementById("btn");
+let ul = document.getElementById("list");
+let tasks = [];
+let currentFilter = "All";
+let allButton = document.getElementById("all");
+let upButton = document.getElementById("up");
+let downButton = document.getElementById("down");
+let filterButton = document.getElementById("filter");
+
+allButton.style.display = "none";
+upButton.style.display = "none";
+downButton.style.display = "none";
+
+filterButton.addEventListener("click", function() {
+    if (allButton.style.display === "block") {
+        allButton.style.display = "none";
+        upButton.style.display = "none";
+        downButton.style.display = "none";
+    } else {
+        allButton.style.display = "block";
+        upButton.style.display = "block";
+        downButton.style.display = "block";
+    }
+});
+
+function Task(title, description) {
+    this.id = Date.now();
+    this.title = title;
+    this.description = description;
+    this.completed = false;
+}
+
+function addTask() {
+    let tmp = new Task(title.value, description.value);
+    tasks.push(tmp);
+    updateTask(tasks);
+}
+
+function updateTask(tab) {
+    ul.innerHTML = "";
+    if (tab.length === 0) {
+        ul.innerHTML = '<p>Pas de nouvelles, bonnes nouvelles !</p>';
+    } else {
+        let tmp;
+        if (currentFilter === "All") {
+            tmp = tab;
+        }
+        if (currentFilter === "Up") {
+            tmp = tab.filter((task) => task.completed);
+        }
+        if (currentFilter === "Down") {
+            tmp = tab.filter((task) => !task.completed);
+        }
+        tmp.forEach(element => {
+            if (element.completed) {
+                ul.innerHTML += `<div class="right-align"><li><h3>${element.title}</h3><input type="checkbox" checked onChange="completeTask(${element.id})"><span>${element.description}</span><br><button id="but" onClick="deleteTask(${element.id})">Supprimer</button></li></div>`;
+            } else {
+                ul.innerHTML += `<div class="right-align"><li><h3>${element.title}</h3><input type="checkbox" onChange="completeTask(${element.id})"><span>${element.description}</span><br><button id="but" onClick="deleteTask(${element.id})">Supprimer</button></li></div>`;
+            }
+        });
+    }
+    console.log(tasks);
+}
+
+
+function changeFilter(newFilter) {
+    currentFilter = newFilter;
+    updateTask(tasks);
+}
+
+function deleteTask(id) {
+    let tmp = tasks.filter((task) => task.id != id);
+    tasks = tmp;
+    updateTask(tasks);
+}
+
+function completeTask(id) {
+    let tmp = tasks.map((task) => task.id == id ? { ...task, completed: !task.completed } : task);
+    tasks = tmp;
+    updateTask(tasks);
+}
+
+allButton.addEventListener("click", function() {
+    changeFilter("All"); 
+});
+
+upButton.addEventListener("click", function() {
+    changeFilter("Up"); 
+});
+
+downButton.addEventListener("click", function() {
+    changeFilter("Down"); 
+});
+
+btn.addEventListener("click", addTask);
+</script>
+</html>
+
+
